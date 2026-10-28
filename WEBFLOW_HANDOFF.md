@@ -16,6 +16,17 @@ Each of these sections already contains an empty `div.map-embed-slot`. The map g
 A complete working example of all three maps with the same structure is in **`example/index.html`**. Serve the
 package folder with any static server and open `example/`.
 
+**v2 (2026-10-28): same maps, lighter on the browser.** The picture is unchanged (checked pixel by pixel against v1
+at 13 points along each map's scroll). What changed:
+- each marker's mask is fitted to its own shapes, instead of the whole frame plus a margin;
+- the labels, pins, markers and cards are only updated when their progress changes, and the 3D model is only redrawn
+  when its pose changes (or after a resize);
+- the looping rings and ripples step 30 times a second instead of at the screen's refresh rate;
+- on screens sharper than 1.5x, the 3D canvas renders at 1.5x.
+Measured in Chrome on an AMD integrated GPU at 1920x945: with a map on screen and nobody scrolling, the graphics
+process went from about 90 to 160 ms of work per second to about 25 to 35; while the 3D model turns, from about 100
+to 200 to about 30 to 40. The assets did not change; `data-assets` may keep pointing at `@v1/assets/`.
+
 ---
 
 ## 1. What is in this package

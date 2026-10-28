@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excalibur 3D maps — integration example</title>
+<style>
+  /* Example of the pinned-scroll pattern used on the Webflow pages (see WEBFLOW_HANDOFF.md, section 4) */
+  body { margin: 0; background: #f8f4ec; font-family: system-ui, sans-serif; color: #1a1a1a; }
+  .spacer { height: 60vh; display: grid; place-items: center; color: #8a8478; }
+  .section-map { height: 300vh; position: relative; }                 /* the scroll track (data-xm-track) */
+  .map-layout { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; }
+  .map-embed-slot { width: 67.34vw; }                                  /* the map, left */
+  .map-copy { width: 30.57vw; padding: 0 1vw; }                         /* the copy column, right */
+  .map-embed-slot.is-wide { width: 67.34vw; }
+  @media (max-width: 767px) {
+    .map-layout { flex-direction: column; justify-content: center; }
+    .map-embed-slot, .map-embed-slot.is-wide { width: 100vw; } .map-copy { width: auto; padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="spacer">Home — scroll ↓</div>
+  <section class="section-map" data-xm-track>
+    <div class="map-layout">
+      <div class="map-embed-slot">
+        <div data-excalibur-map data-map="project" data-start-view="model" data-assets="../assets/"
+             data-link-bellehelen="#bellehelen" data-link-north-tybo="#north-tybo"></div>
+      </div>
+      <div class="map-copy"><h2>A District-Scale Gold Portfolio</h2></div>
+    </div>
+  </section>
+  <div class="spacer" id="north-tybo">/north-tybo — scroll ↓</div>
+  <section class="section-map is-flush" data-xm-track>
+    <div class="map-layout is-flush">
+      <div class="map-embed-slot is-wide">
+        <div data-excalibur-map data-map="northtybo" data-start-view="model" data-assets="../assets/"
+             data-link-north-tybo="#north-tybo"></div>
+      </div>
+      <div class="map-copy is-centered"><h2>Positioned in the Heart of an Active Mining District</h2></div>
+    </div>
+  </section>
+  <div class="spacer" id="bellehelen">/bellehelen — scroll ↓</div>
+  <section class="section-map is-flush" data-xm-track>
+    <div class="map-layout is-flush">
+      <div class="map-embed-slot is-wide">
+        <div data-excalibur-map data-map="bellehelen" data-start-view="model" data-assets="../assets/"
+             data-link-bellehelen="#bellehelen"></div>
+      </div>
+      <div class="map-copy is-centered"><h2>Where it is</h2></div>
+    </div>
+  </section>
+  <div class="spacer">End</div>
+  <script>
+    // card clicks: every card fires 'excalibur-card' (here only logged)
+    document.addEventListener('excalibur-card', (e) => console.log('card', e.detail.card, e.detail.href));
+  </script>
+  <script src="../excalibur-map.min.js" defer></script>
+</body>
+</html>

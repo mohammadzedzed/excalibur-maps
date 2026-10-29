@@ -27,6 +27,12 @@ Measured in Chrome on an AMD integrated GPU at 1920x945: with a map on screen an
 process went from about 90 to 160 ms of work per second to about 25 to 35; while the 3D model turns, from about 100
 to 200 to about 30 to 40. The assets did not change; `data-assets` may keep pointing at `@v1/assets/`.
 
+**v3 (2026-10-29): cards clickable as soon as they open.** A card used to answer the mouse only once its arrow had
+finished fading in, so on the home map it looked finished for about 150px of scrolling before it did anything. It is now
+clickable as soon as its box has opened. Nothing else changed (same picture, checked against v1 at 13 points per map).
+The site adds its own, stronger hover to linked cards in its custom code (the card's ground lightens and its title turns
+blue), on top of the package's star, arrow and border hover.
+
 ---
 
 ## 1. What is in this package
